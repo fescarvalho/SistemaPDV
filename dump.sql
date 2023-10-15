@@ -1,0 +1,14 @@
+CREATE DATABASE sistema_pdv
+
+CREATE TABLE usuarios (
+id SERIAL PRIMARY KEY ,
+nome VARCHAR(100) NOT NULL,
+email TEXT NOT NULL UNIQUE,
+senha TEXT NOT NULL
+)
+
+CREATE TABLE categorias (
+id SERIAL PRIMARY KEY,
+descricao TEXT NOT NULL
+)
+
