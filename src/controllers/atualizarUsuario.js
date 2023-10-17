@@ -11,7 +11,7 @@ const updateUser = async (req, res) => {
       .whereNot('id', userId);
 
     if (userEmail.length > 0)
-      return res.status(200).json({ message: 'Email ja cadastrado.' });
+      return res.status(400).json({ message: 'Email ja cadastrado.' });
 
     const senhaCripto = await bcrypt.hash(senha, 10);
 

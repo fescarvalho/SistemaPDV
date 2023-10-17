@@ -7,14 +7,14 @@ const login = async (req, res) => {
   const { email, senha } = req.body;
 
   if (!email || !senha) {
-    return res.status(404).json('É obrigatório email e senha');
+    return res.status(404).json({ mensagem: 'É obrigatório email e senha' });
   }
 
   try {
-    const user = await knex('usuarios').select('*').where({ email: email });
-    console.log(senha);
+    const user = await knex('usuarios').where('email', email);
+
     if (user.rowCount === 0) {
-      return res.status(400).json('O usuario não foi encontrado');
+      return res.status(400).json({ mensagem: 'O usuario não foi encontrado' });
     }
 
     const usuario = user[0];
@@ -22,7 +22,7 @@ const login = async (req, res) => {
     const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
 
     if (!senhaCorreta) {
-      return res.status(400).json('Email e/ou senha não confere');
+      return res.status(400).json({ mensagem: 'Email e/ou senha não confere' });
     }
 
     const token = jwt.sign({ id: usuario.id }, process.env.PASSWORD_HASH, {
@@ -36,7 +36,6 @@ const login = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log(error);
     return res.status(400).json(error.message);
   }
 };

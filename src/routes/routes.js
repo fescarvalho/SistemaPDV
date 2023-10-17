@@ -9,11 +9,10 @@ const schemaUsario = require('../utils/validations/schemaUsario');
 const verifyToken = require('../middlewares/verifytoken');
 const routes = express();
 
-routes.get('/', (req, res)=>  res.send(200).json({message: 'Hellow World'}));
 routes.get('/categoria', listarCategorias);
 routes.post('/login', login);
-routes.get('/usuario', verifyToken, detalharPerfil);
 routes.post('/usuario', validationCreate(schemaUsario), createUser);
+routes.get('/usuario', verifyToken, detalharPerfil);
 routes.put('/usuario', verifyToken, validationCreate(schemaUsario), updateUser);
 
 module.exports = routes;
