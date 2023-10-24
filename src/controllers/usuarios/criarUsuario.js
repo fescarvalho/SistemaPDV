@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 const createUser = async (req, res, next) => {
   try {
     const { nome, email, senha } = req.body;
-    const userExists = await knex('usuarios').where('email', email);
+    const userExists = await knex('usuarios').where('email', email).first();
 
-    if (userExists.length > 0)
+    if (userExists)
       return res.status(400).send({ message: 'Email ja cadastrado!' });
 
     const senhaCripto = await bcrypt.hash(senha, 10);
@@ -22,6 +22,4 @@ const createUser = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  createUser,
-};
+module.exports = createUser;

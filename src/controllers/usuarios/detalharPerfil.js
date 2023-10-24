@@ -20,4 +20,4 @@ const detalharPerfil = async (req, res) => {
   }
 };
 
-module.exports = { detalharPerfil };
+module.exports = detalharPerfil;

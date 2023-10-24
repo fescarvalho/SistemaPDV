@@ -8,9 +8,10 @@ const updateUser = async (req, res) => {
   try {
     const userEmail = await knex('usuarios')
       .where('email', email)
-      .whereNot('id', userId);
+      .whereNot('id', userId)
+      .first();
 
-    if (userEmail.length > 0)
+    if (userEmail)
       return res.status(400).json({ message: 'Email ja cadastrado.' });
 
     const senhaCripto = await bcrypt.hash(senha, 10);
@@ -27,4 +28,4 @@ const updateUser = async (req, res) => {
   }
 };
 
-module.exports = { updateUser };
+module.exports = updateUser;
