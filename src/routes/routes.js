@@ -22,6 +22,9 @@ const listarProdutos = require('../controllers/produtos/listarProdutos');
 const cadastrarCliente = require('../controllers/clientes/cadastrarCliente');
 const detalharProduto = require('../controllers/produtos/detalharProduto');
 
+routes.get('/', (req, res) =>
+  res.status(200).json({ mensagem: 'Hellow  World' }),
+);
 routes.get('/categoria', listarCategorias);
 routes.post('/login', login);
 routes.post('/usuario', validationCreate(schemaUsario), createUser);
