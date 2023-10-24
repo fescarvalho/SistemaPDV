@@ -29,8 +29,8 @@ const schemaCliente = yup.object({
   cpf: yup
     .string()
     .required('O campo CPF é obrigatório.')
-    .min(9, 'CPF inválido.')
-    .max(9, 'CPF inválido.'),
+    .min(11, 'CPF inválido.')
+    .max(11, 'CPF inválido.'),
   cep: yup.string().min(8, 'CEP inválido.').max(8, 'CEP inválido.'),
   rua: yup.string(),
   numero: yup.number(),

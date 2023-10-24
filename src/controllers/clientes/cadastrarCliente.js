@@ -11,9 +11,8 @@ const cadastrarCliente = async (req, res) => {
 
     if (cadastroExistente) {
       if (cadastroExistente.email === email) {
-        console.log(email);
         return res.status(400).json({ mensagem: 'Email ja cadastrado!' });
-      } else if (cadastroExistente.cpf.trim() === cpf) {
+      } else if (cadastroExistente.cpf === cpf) {
         return res.status(400).json({ mensagem: 'CPF ja cadastrado!' });
       }
     }
