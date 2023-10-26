@@ -15,6 +15,7 @@ const schemaProduto = yup.object({
   descricao: yup.string().required('O campo descrição é obrigatório.'),
   quantidade_estoque: yup
     .number()
+    .min(1, 'O valor minimo para estoque é de 1')
     .required('O campo quantidade é obrigatório.'),
   valor: yup.number().required('O campo valor é obrigatório.'),
   categoria_id: yup.number().required('O campo categoria_id é obrigatório.'),
