@@ -5,7 +5,7 @@ const mailjet = NodeMailJet.apiConnect(
 );
 const mail = async (email, nome, data) => {
   try {
-    const request = await mailjet.post('send', { version: 'v3.1' }).request({
+    await mailjet.post('send', { version: 'v3.1' }).request({
       Messages: [
         {
           From: {
