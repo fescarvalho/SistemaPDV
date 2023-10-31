@@ -45,7 +45,7 @@ const cadastrarPedido = async (req, res) => {
 
     //Enviando Email de confirmação
 
-    confirmarPedido(cliente_id);
+    await confirmarPedido(cliente_id);
 
     return res.status(200).send({ message: 'Pedido registrado com sucesso!' });
   } catch (err) {
