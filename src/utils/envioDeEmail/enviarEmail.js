@@ -1,6 +1,7 @@
 const transporter = require('../../mail/sendMail');
 const compiladorHTML = require('../../mail/CompiladorHTML');
 const knex = require('../../../conexao');
+const mail = require('../../mail/sendMailJet');
 
 const confirmarPedido = async (clientID) => {
   const { nome, email } = await knex('clientes').where('id', clientID).first();
@@ -45,20 +46,15 @@ const confirmarPedido = async (clientID) => {
     ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`,
   });
 
-  transporter.sendMail({
+  /*   transporter.sendMail({
     from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_FROM}>`,
     to: `${nome} <${email}>`,
     subject: 'Confirmação de pedido',
     html,
-  });
+  }); */
 
-  transporter.verify(function (error, success) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Server is ready to take our messages');
-    }
-  });
+  mail(email, nome, html);
+
   return null;
 };
 

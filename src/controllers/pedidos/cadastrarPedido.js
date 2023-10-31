@@ -1,8 +1,10 @@
 const knex = require('../../../conexao');
+
 const confirmarPedido = require('../../utils/envioDeEmail/enviarEmail');
 
 const cadastrarPedido = async (req, res) => {
   const { cliente_id, observacao, pedido_produtos } = req.body;
+
   try {
     //valor total
     let total = 0;
