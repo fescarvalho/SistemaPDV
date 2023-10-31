@@ -38,13 +38,16 @@ const confirmarPedido = async (clientID) => {
   </tr>`;
   }
 
-  const html = await compiladorHTML('src/templatesMail/templateEmail.html', {
-    nomeusuario: nome,
-    tableprodutos: tabelaProdutosHTML,
-    valortotaldopedido: `${(
-      pedidoBanco.valor_total.toFixed(2) / 100
-    ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`,
-  });
+  const html = await compiladorHTML(
+    './src/utils/envioDeEmail/templatesMail/templateEMAIL.html',
+    {
+      nomeusuario: nome,
+      tableprodutos: tabelaProdutosHTML,
+      valortotaldopedido: `${(
+        pedidoBanco.valor_total.toFixed(2) / 100
+      ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`,
+    },
+  );
 
   /*   transporter.sendMail({
     from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_FROM}>`,
