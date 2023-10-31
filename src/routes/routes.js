@@ -4,12 +4,14 @@ const createUser = require('../controllers/usuarios/criarUsuario');
 const updateUser = require('../controllers/usuarios/atualizarUsuario');
 const detalharPerfil = require('../controllers/usuarios/detalharPerfil');
 const login = require('../controllers/usuarios/login');
-const validationCreate = require('../middlewares/middleware');
+const validationCreate = require('../middlewares/middlewareValidacoes');
+const midCadastrarPedido = require('../middlewares/midCadastrarPedido');
 const {
   schemaUsario,
   schemaProduto,
   schemaCliente,
-} = require('../utils/validations/schemaUsario');
+  schemaPedido,
+} = require('../utils/validations/schemas');
 const verifyToken = require('../middlewares/verifytoken');
 const cadastrarProduto = require('../controllers/produtos/cadastrarProduto');
 const editarCliente = require('../controllers/clientes/editarCliente');
@@ -21,6 +23,7 @@ const editDadosprod = require('../controllers/produtos/editarProd');
 const listarProdutos = require('../controllers/produtos/listarProdutos');
 const cadastrarCliente = require('../controllers/clientes/cadastrarCliente');
 const detalharProduto = require('../controllers/produtos/detalharProduto');
+const cadastrarPedido = require('../controllers/pedidos/cadastrarPedido');
 
 routes.get('/', (req, res) =>
   res.status(200).json({ mensagem: 'Hellow  World' }),
@@ -54,5 +57,12 @@ routes.post(
   cadastrarCliente,
 );
 routes.get('/produto/:id', verifyToken, detalharProduto);
+routes.post(
+  '/pedido',
+  verifyToken,
+  validationCreate(schemaPedido),
+  midCadastrarPedido,
+  cadastrarPedido,
+);
 
 module.exports = routes;

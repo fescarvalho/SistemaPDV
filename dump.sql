@@ -47,3 +47,26 @@ VALUES
   ('Moda'),
   ('Bebê'),
   ('Games');
+
+  
+CREATE TABLE pedidos (
+id SERIAL PRIMARY KEY ,
+cliente_id INTEGER NOT NULL,
+observacao TEXT ,
+valor_total INTEGER NOT NULL
+)
+
+
+CREATE TABLE pedido_produtos (
+id SERIAL PRIMARY KEY ,
+pedido_id INTEGER NOT NULL,
+produto_id INTEGER NOT NULL,
+quantidade_produto INTEGER NOT NULL ,
+valor_produto INTEGER NOT NULL
+)
+
+
+ALTER TABLE produtos ADD COLUMN produto_imagem TEXT
+
+
+

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirmação de Pedido</title>
+    <style>
+      * {
+        font-size: 1rem;
+      }
+      .user {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #00008b;
+      }
+
+      p {
+        font-style: italic;
+      }
+      #tabela-produtos {
+        border-collapse: collapse;
+      }
+      #tabela-produtos th {
+        font-size: 1.2rem;
+        background-color: #f2f2f2;
+        padding: 8px;
+        text-align: left;
+      }
+      #tabela-produtos tr {
+        font-size: 1rem;
+        padding: 8px;
+        text-align: left;
+      }
+      #tabela-produtos td {
+        font-size: 1rem;
+        padding: 4px;
+        text-align: left;
+        font-weight: bold;
+      }
+      #valor {
+        font-size: 1.2rem;
+        color: #00008b;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Confirmação de Pedido</h1>
+
+    <p>Olá <span class="user">{{{nomeusuario}}}</span></p>
+
+    <p>O seu pedido foi confirmado. Abaixo estão os detalhes</p>
+    <table border="1" id="tabela-produtos">
+      <thead>
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Quantidade</th>
+          <th>Valor Unitário</th>
+          <th>Valor Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{{tableprodutos}}}
+      </tbody>
+    </table>
+    <p>
+      O valor total do seu pedido é:
+      <span id="valor">{{{valortotaldopedido}}}</span>
+    </p>
+
+    <p>Obrigado por fazer o seu pedido conosco!</p>
+  </body>
+</html>
