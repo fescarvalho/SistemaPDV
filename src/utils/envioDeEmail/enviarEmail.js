@@ -46,7 +46,7 @@ const confirmarPedido = async (clientID) => {
   });
 
   transporter.sendMail({
-    from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_FROM}>`,
+    from: `Grupo2 <fecarv_dev@outlook.com>`,
     to: `${nome} <${email}>`,
     subject: 'Confirmação de pedido',
     html,
