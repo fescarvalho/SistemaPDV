@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "![](https://i.imgur.com/xG74tOh.png)",
   "main": "index.js",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
-    "dev": "node servidor.js",
+    "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
