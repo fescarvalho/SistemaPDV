@@ -53,7 +53,7 @@ const confirmarPedido = async (clientID) => {
     html,
   }); */
 
-  mail(email, nome, html);
+  await mail(email, nome, html);
 
   return null;
 };
