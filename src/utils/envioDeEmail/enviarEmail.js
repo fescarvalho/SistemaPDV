@@ -38,7 +38,7 @@ const confirmarPedido = async (clientID) => {
   </tr>`;
   }
 
-  const html = await compiladorHTML('./src/templatesMail/templateEmail.html', {
+  const html = await compiladorHTML('src/templatesMail/templateEmail.html', {
     nomeusuario: nome,
     tableprodutos: tabelaProdutosHTML,
     valortotaldopedido: `${(
