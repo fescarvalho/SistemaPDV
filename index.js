@@ -1,10 +1,4 @@
 require('dotenv').config();
-const express = require('express');
-const routes = require('./src/routes/routes');
-const servidor = express();
+const app = require('./servidor');
 
-app.listen(process.env.PORT || 8080);
-servidor.use(express.json());
-servidor.use(routes);
-
-module.exports = servidor;
+app.listen(process.env.PORT);
