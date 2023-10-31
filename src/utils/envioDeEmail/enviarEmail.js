@@ -37,19 +37,17 @@ const confirmarPedido = async (clientID) => {
     currency: 'BRL',
   });
 
-  const html = await compiladorHTML('./src/templatesMail/templateEmail.html', {
+  const html = await compiladorHTML('./src/utils/envioDeEmail/templatesMail/templateEMAIL.html', {
     nomeusuario: nome,
     tableprodutos: tabelaProdutosHTML,
     valortotaldopedido: valorTotalFormatado,
   });
-
   /*   transporter.sendMail({
     from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_FROM}>`,
     to: `${nome} <${email}>`,
     subject: 'Confirmação de pedido',
     html,
   }); */
-
   await mail(email, nome, html);
 
   return null;
