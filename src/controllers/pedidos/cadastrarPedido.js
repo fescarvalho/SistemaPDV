@@ -17,13 +17,16 @@ const calcularTotalPedido = async (pedido_produtos) => {
 };
 
 const inserirPedidoNoBanco = async (cliente_id, observacao, total) => {
-  await knex('pedidos').insert({
-    cliente_id,
-    observacao,
-    valor_total: total,
-  });
+  const idPedido = await knex('pedidos')
+    .insert({
+      cliente_id,
+      observacao,
+      valor_total: total,
+    })
+    .returning('id');
 
-  const { id } = await knex('pedidos').select('*').orderBy('id', 'desc').first();
+  const { id } = idPedido[0];
+
   return id;
 };
 
