@@ -11,16 +11,14 @@ const excluirProduto = async (req, res) => {
       return res.status(404).json({ mensagem: 'Produto não encontrado!' });
     }
 
-    const produtoComPedido = await knex('pedido_produtos')
-      .where('produto_id', id)
-      .first();
+    const produtoComPedido = await knex('pedido_produtos').where('produto_id', id).first();
     if (produtoComPedido)
       return res.status(404).json({
-        mensagem:
-          'Não foi possivel excluir produto, pois existem pedidos com ele!',
+        mensagem: 'Não foi possivel excluir produto, pois existem pedidos com ele!',
       });
 
     const { produto_imagem } = produto;
+
     const ultimaBarra = produto_imagem.lastIndexOf('/');
     const nomeDoArquivo = produto_imagem.substring(ultimaBarra + 1);
     await s3
@@ -32,11 +30,9 @@ const excluirProduto = async (req, res) => {
 
     await knex('produtos').where('id', id).del();
 
-    return res.status(200).json({ mensagem: 'Produto excluído com sucesso!' });
+    return res.status(200).json({ mensagem: 'Produto excluido com sucesso!' });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ mensagem: 'Erro ao excluir o produto.', error: error.message });
+    return res.status(500).json({ mensagem: 'Erro ao excluir o produto.', error: error.message });
   }
 };
 

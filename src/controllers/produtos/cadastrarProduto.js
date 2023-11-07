@@ -5,10 +5,12 @@ const { upload } = require('../../utils/uploadS3');
 const cadastrarProduto = async (req, res) => {
   const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
   const { file } = req;
+
   try {
     const categoriaExists = await knex('categorias').where('id', categoria_id).first();
 
     if (!categoriaExists) return res.status(400).json({ mensagem: 'Categoria não existe!' });
+
     const produtos = {
       descricao,
       quantidade_estoque,
@@ -20,7 +22,7 @@ const cadastrarProduto = async (req, res) => {
     if (file) {
       const id = novoProduto[0].id;
 
-      const { url } = await upload(process.env.KEY_ID, file.buffer, file.mimetype);
+      const { url } = await upload(file.originalname, file.buffer, file.mimetype);
 
       const produtoImagem = await knex('produtos')
         .update({ produto_imagem: url })
