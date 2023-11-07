@@ -1,5 +1,6 @@
 const compiladorHTML = require('../../mail/CompiladorHTML');
 const knex = require('../../../conexao');
+const transporter = require('../../mail/sendMail');
 const mail = require('../../mail/sendMailJet');
 
 const confirmarPedido = async (clientID) => {
@@ -42,7 +43,7 @@ const confirmarPedido = async (clientID) => {
     valortotaldopedido: valorTotalFormatado,
   });
 
-  /*   transporter.sendMail({
+  /* transporter.sendMail({
     from: `${process.env.EMAIL_NAME} <${process.env.EMAIL_FROM}>`,
     to: `${nome} <${email}>`,
     subject: 'Confirmação de pedido',

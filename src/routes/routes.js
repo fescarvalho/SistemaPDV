@@ -21,7 +21,7 @@ const listarProdutos = require('../controllers/produtos/listarProdutos');
 const cadastrarCliente = require('../controllers/clientes/cadastrarCliente');
 const detalharProduto = require('../controllers/produtos/detalharProduto');
 const cadastrarPedido = require('../controllers/pedidos/cadastrarPedido');
-const listarPedidos = require('../controllers/pedidos/listarPedidos');
+
 const routes = express();
 
 routes.get('/categoria', listarCategorias);
@@ -58,6 +58,5 @@ routes.put(
   validationCreate(schemaProduto),
   editDadosprod,
 );
-routes.get('/pedido', verifyToken, listarPedidos);
 
 module.exports = routes;

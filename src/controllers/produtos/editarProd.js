@@ -30,7 +30,7 @@ const editDadosprod = async (req, res) => {
         categoria_id,
       })
       .where({ id });
-    return res.status(201).json(produto);
+    return res.status(201).json({ mensagem: 'Produto Editado com Sucesso!' });
   } catch (error) {
     return res.status(400).json({ mensagem: error.message });
   }
