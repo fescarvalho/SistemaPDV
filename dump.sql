@@ -66,7 +66,7 @@ valor_produto INTEGER NOT NULL
 )
 
 
-ALTER TABLE produtos ADD COLUMN produto_imagem TEXT
+ALTER TABLE produtos ADD COLUMN produto_imagem VARCHAR;
 
 
 
