@@ -21,10 +21,12 @@ const listarProdutos = require('../controllers/produtos/listarProdutos');
 const cadastrarCliente = require('../controllers/clientes/cadastrarCliente');
 const detalharProduto = require('../controllers/produtos/detalharProduto');
 const cadastrarPedido = require('../controllers/pedidos/cadastrarPedido');
+const listarPedidos = require('../controllers/pedidos/listarPedidos');
 
 const routes = express();
 
 routes.get('/categoria', listarCategorias);
+
 routes.post('/login', login);
 routes.post('/usuario', validationCreate(schemaUsario), createUser);
 routes.get('/usuario', verifyToken, detalharPerfil);
@@ -32,18 +34,12 @@ routes.put('/usuario', verifyToken, validationCreate(schemaUsario), updateUser);
 
 routes.put('/cliente/:id', verifyToken, validationCreate(schemaCliente), editarCliente);
 routes.get('/cliente/:id', verifyToken, detalharCliente);
-routes.delete('/produto/:id', verifyToken, excluirProduto);
 routes.get('/cliente', verifyToken, listclient);
-routes.get('/produto', verifyToken, listarProdutos);
 routes.post('/cliente', verifyToken, validationCreate(schemaCliente), cadastrarCliente);
+
+routes.get('/produto', verifyToken, listarProdutos);
 routes.get('/produto/:id', verifyToken, detalharProduto);
-routes.post(
-  '/pedido',
-  verifyToken,
-  validationCreate(schemaPedido),
-  midCadastrarPedido,
-  cadastrarPedido,
-);
+routes.delete('/produto/:id', verifyToken, excluirProduto);
 routes.post(
   '/produto',
   verifyToken,
@@ -59,4 +55,13 @@ routes.put(
   editDadosprod,
 );
 
+routes.post(
+  '/pedido',
+  verifyToken,
+  validationCreate(schemaPedido),
+  midCadastrarPedido,
+  cadastrarPedido,
+);
+
+routes.get('/pedido', verifyToken, listarPedidos);
 module.exports = routes;
