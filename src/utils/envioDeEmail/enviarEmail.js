@@ -36,7 +36,7 @@ const confirmarPedido = async (clientID) => {
     currency: 'BRL',
   });
 
-  const html = await compiladorHTML('./src/templatesMail/templateEmail.html', {
+  const html = await compiladorHTML('./src/templatesMail/templateEMAIL.html', {
     nomeusuario: nome,
     tableprodutos: tabelaProdutosHTML,
     valortotaldopedido: valorTotalFormatado,
